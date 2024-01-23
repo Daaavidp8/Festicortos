@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h5 class="card-title">Listado de Libros</h5>
                 <p class="card-text">Listado con una inmensa variedad de libros</p>
-                <a href="{{route('Home')}}" class="btn btn-primary">Ver Libros</a>
+                <a href="{{route('Libros.index')}}" class="btn btn-primary">Ver Libros</a>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
             <div class="card-body">
                 <h5 class="card-title">Listado de Cortos</h5>
                 <p class="card-text">Listado con una inmensa variedad de cortos</p>
-                <a href="{{route('Home')}}" class="btn btn-primary">Ver Cortos</a>
+                <a href="{{route('Cortos.index')}}" class="btn btn-primary">Ver Cortos</a>
             </div>
         </div>
     </div>

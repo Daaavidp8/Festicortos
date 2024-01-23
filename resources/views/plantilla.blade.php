@@ -6,7 +6,7 @@
     <title>
         @yield('cabecera')
     </title>
-{{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="https://kit.fontawesome.com/9082f21abd.js" crossorigin="anonymous"></script>
 </head>
 

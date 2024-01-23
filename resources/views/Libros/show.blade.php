@@ -10,7 +10,7 @@
             <th>Autor</th>
         </tr>
             <tr>
-                <td>{{ $libro["titulo"] }} ({{ $libro["autor"] }})</td>
+                <td>{{ $libro['titulo'] }})</td>
                 <td><a href="{{ route('Libros.index') }}">Volver</a></td>
             </tr>
     </table>

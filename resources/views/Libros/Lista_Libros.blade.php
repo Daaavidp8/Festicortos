@@ -14,7 +14,7 @@
         @forelse ($libros as $libro)
             <tr>
                 <td>{{ $libro["titulo"] }} ({{ $libro["autor"] }})</td>
-                <td><a href="{{ route('Libros.show',$loop->index) }}">Mostrar Mas</a></td>
+                <td><a href="{{ route('Libros.show',$libro['id']) }}">Mostrar Mas</a></td>
             </tr>
         @empty
             <tr>
