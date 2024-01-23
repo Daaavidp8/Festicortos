@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\LibrosController;
+use \App\Http\Controllers\CortosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('Home');
+})->name('Home');
+
+Route::resource('Libros', LibrosController::class);
+Route::resource('Cortos', CortosController::class);
+
+
