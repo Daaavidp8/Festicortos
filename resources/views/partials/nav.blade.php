@@ -24,6 +24,13 @@
                     </li>
                 </a>
 
+                <a href="{{route('Autores.index')}}">
+                    <li class="list-group-item list-group-item-light menu">
+                        <i class="fa-solid fa-pen-nib"></i>
+                        Listado de Autores
+                    </li>
+                </a>
+
                 <a href="{{route('Cortos.index')}}">
                     <li class="list-group-item list-group-item-light menu">
                         <i class="fa-solid fa-film"></i>

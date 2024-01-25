@@ -1,5 +1,4 @@
 @extends('plantilla')
-
 @section('cabecera', 'Listado de libros')
 
 @section('titulo','Listado de Libros')
@@ -14,12 +13,12 @@
         </tr>
         </thead>
         <tbody>
-        @forelse ($libros as $libro)
+        @forelse ($autores as $autor)
             <tr>
-                <td>{{ $libro["titulo"] }}</td>
-                <td>{{ $libro["autor"] }}</td>
+                <td>{{ $autor["nombre"] }}</td>
+                <td>{{ $autor["nacimiento"] }}</td>
                 <td>
-                    <a href="{{ route('Libros.show',$libro['id']) }}" class="btn btn-primary btn-sm">Mostrar Más</a>
+                    <a href="{{ route('Autores.index',$autor['id']) }}" class="btn btn-primary btn-sm">Volver</a>
                 </td>
             </tr>
         @empty
@@ -29,5 +28,4 @@
         @endforelse
         </tbody>
     </table>
-
 @endsection

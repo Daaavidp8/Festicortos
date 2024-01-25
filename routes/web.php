@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\LibrosController;
 use \App\Http\Controllers\CortosController;
+use \App\Http\Controllers\AutoresController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +21,5 @@ Route::get('/', function () {
 
 Route::resource('Libros', LibrosController::class);
 Route::resource('Cortos', CortosController::class);
-
+Route::resource('Autores', AutoresController::class);
 
