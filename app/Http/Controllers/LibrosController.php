@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Libro;
+use App\Models\Autor;
 use Illuminate\Http\Request;
 
 class LibrosController extends Controller
@@ -10,8 +11,9 @@ class LibrosController extends Controller
 
     public function index()
     {
-        $libros = Libro::get();
-        return view('Libros.Lista_Libros', compact('libros'));
+        $libros = Libro::paginate(10);
+        $autores = Libro::get();
+        return view('Libros.Lista_Libros', compact('libros','autores'));
     }
 
     /**
@@ -19,7 +21,7 @@ class LibrosController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -27,7 +29,13 @@ class LibrosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $libro = new Libro();
+        $libro->titulo = $request->get('titulo');
+        $libro->editorial = $request->get('editorial');
+        $libro->precio = $request->get('precio');
+        $libro->save();
+
+        return redirect()->route('Libros.index');
     }
 
     /**
@@ -35,16 +43,16 @@ class LibrosController extends Controller
      */
     public function show($id)
     {
-        $libro = Libro::find($id);
-        return view('Libros.show',compact('libro'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $libro = Libro::find($id);
+        return view('Libros.edit',compact('libro'));
     }
 
     /**
@@ -52,7 +60,12 @@ class LibrosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $libro = Libro::findOrFail($id);
+        $libro->titulo = $request->get('titulo');
+        $libro->editorial = $request->get('editorial');
+        $libro->precio = $request->get('precio');
+        $libro->save();
+        return redirect()->route('Libros.index');
     }
 
     /**
@@ -60,6 +73,7 @@ class LibrosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Libro::findOrFail($id)->delete();
+        return redirect()->route('Libros.index');
     }
 }

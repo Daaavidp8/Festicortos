@@ -43,16 +43,16 @@ class AutoresController extends Controller
      */
     public function show($id)
     {
-        $autor = Autor::find($id);
-        return view('Autores.show',compact('autor'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $autor = Autor::findOrFail($id);
+        return view('Autores.edit',compact('autor'));
     }
 
     /**
@@ -60,14 +60,19 @@ class AutoresController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $autor = Autor::findOrFail($id);
+        $autor->nombre = $request->get('nombre');
+        $autor->nacimiento = $request->get('nacimiento');
+        $autor->save();
+        return redirect()->route('Autores.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Autor::findOrFail($id)->delete();
+        return redirect()->route('Autores.index');
     }
 }
