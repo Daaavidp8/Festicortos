@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Libro extends Model
 {
     protected $table = 'libros';
+
+    public function autor(){
+        return $this->belongsTo(Autor::class);
+    }
 }

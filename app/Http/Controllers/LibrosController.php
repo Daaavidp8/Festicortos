@@ -12,7 +12,7 @@ class LibrosController extends Controller
     public function index()
     {
         $libros = Libro::paginate(10);
-        $autores = Libro::get();
+        $autores = Autor::get();
         return view('Libros.Lista_Libros', compact('libros','autores'));
     }
 
@@ -33,6 +33,7 @@ class LibrosController extends Controller
         $libro->titulo = $request->get('titulo');
         $libro->editorial = $request->get('editorial');
         $libro->precio = $request->get('precio');
+        $libro->id_Autor = $request->get('autor');
         $libro->save();
 
         return redirect()->route('Libros.index');
@@ -52,7 +53,8 @@ class LibrosController extends Controller
     public function edit($id)
     {
         $libro = Libro::find($id);
-        return view('Libros.edit',compact('libro'));
+        $autores = Autor::get();
+        return view('Libros.edit',compact('libro','autores'));
     }
 
     /**
@@ -64,6 +66,7 @@ class LibrosController extends Controller
         $libro->titulo = $request->get('titulo');
         $libro->editorial = $request->get('editorial');
         $libro->precio = $request->get('precio');
+        $libro->id_Autor = $request->get('autor');
         $libro->save();
         return redirect()->route('Libros.index');
     }

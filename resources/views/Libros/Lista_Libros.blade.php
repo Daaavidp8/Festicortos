@@ -10,7 +10,9 @@
         <tr>
             <th>#</th>
             <th>Titulo</th>
+            <th>Editorial</th>
             <th>Autor</th>
+            <th>Precio</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -21,18 +23,19 @@
                 <td colspan="2"><input type="text" placeholder="Añade el titulo de un Libro" class="form-control" name="titulo"></td>
 
                 <td><input type="text" placeholder="Añade su Editorial" class="form-control" name="editorial"></td>
-                <td><input type="text" placeholder="Añade su Precio" pattern="-?\d+(\.\d+)?" class="form-control" name="precio"></td>
                 <td>
-                    <select name="autor">
+                    <select name="autor" class="form-select">
+                        <option selected disabled> -- Selecciona un autor -- </option>
                         @forelse ($autores as $autor)
-                            <option value="{{ $autor['id'] }}">{{ $autor['nombre'] }}<option>
+                            <option value="{{ $autor['id'] }}">{{ $autor['nombre']}}</option>
                         @empty
                             <option value="null">
                                 No se encontraron Autores
-                            <option>
+                            </option>
                         @endforelse
                     </select>
                 </td>
+                <td><input type="text" placeholder="Añade su Precio" pattern="-?\d+(\.\d+)?" class="form-control" name="precio"></td>
                 <td>
                     <button type="submit" class="btn btn-success">Añadir</button>
                 </td>
@@ -43,6 +46,20 @@
                 <td class="text-center">{{ $libro["id"] }}</td>
                 <td>{{ $libro["titulo"] }}</td>
                 <td>{{ $libro["editorial"] }}</td>
+                <td>
+                        <?php $autorEncontrado = false; ?>
+
+                    @foreach($autores as $autor)
+                        @if($autor['id'] === $libro['id_Autor'])
+                            {{ $autor['nombre'] }}
+                                <?php $autorEncontrado = true; ?>
+                        @endif
+                    @endforeach
+
+                    @if(!$autorEncontrado)
+                        Sin Autor Especificado
+                    @endif
+                </td>
                 <td>{{ $libro["precio"] }}</td>
                 <td class="d-flex">
                     <a href="{{ route('Libros.edit',$libro['id']) }}" class="btn btn-primary btn-sm me-2">Modificar</a>

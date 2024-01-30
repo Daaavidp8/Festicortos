@@ -22,6 +22,21 @@
                     <label for="nacimiento" class="form-label">Editorial:</label>
                     <input type="text" value="{{ $libro['editorial'] }}"  class="form-control" name="editorial" id="editorial">
                 </div>
+
+                <div class="mb-3">
+                    <label for="autor" class="form-label">Autor:</label>
+                    <select name="autor" class="form-select" id="autor">
+                        @forelse ($autores as $autor)
+                            <option value="{{ $autor['id'] }}" {{$autor['id'] === $libro['id_Autor'] ? 'selected' : ''}}>{{ $autor['nombre']}}</option>
+                        @empty
+                            <option value="null" disabled selected>
+                                No se encontraron Autores
+                            </option>
+                        @endforelse
+                    </select>
+                </div>
+
+
                 <div class="mb-3">
                     <label for="precio" class="form-label">Precio:</label>
                     <input type="text" value="{{ $libro['precio'] }}" pattern="-?\d+(\.\d+)?" class="form-control" name="precio" id="precio">

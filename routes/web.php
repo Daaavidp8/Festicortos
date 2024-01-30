@@ -22,4 +22,7 @@ Route::get('/', function () {
 Route::resource('Libros', LibrosController::class);
 Route::resource('Cortos', CortosController::class);
 Route::resource('Autores', AutoresController::class);
+Route::get('filtro', function () {
+    return view('Autores.filtro');
+})->name('filtro');
 

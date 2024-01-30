@@ -38,6 +38,13 @@
                     </li>
                 </a>
 
+                <a href="{{route('filtro')}}">
+                    <li class="list-group-item list-group-item-light menu">
+                        <i class="fa-solid fa-filter"></i>
+                        Filtro Por Autor
+                    </li>
+                </a>
+
             </ul>
         </div>
     </div>
