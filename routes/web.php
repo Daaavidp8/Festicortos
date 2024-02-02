@@ -22,7 +22,14 @@ Route::get('/', function () {
 Route::resource('Libros', LibrosController::class);
 Route::resource('Cortos', CortosController::class);
 Route::resource('Autores', AutoresController::class);
-Route::get('filtro', function () {
-    return view('Autores.filtro');
-})->name('filtro');
+
+Route::get('FiltroBuscar',[AutoresController::class,"filtroBuscar"])->name('filtroBuscar');
+Route::post('FiltroMostrar',[AutoresController::class,"filtroMostrar"])->name('filtroMostrar');
+
+Route::get('api/libros',[LibrosController::class,"APIgetLibros"])->name('apiLibrosall');
+Route::get('api/libros/{id}',[LibrosController::class,"APIgetUniqueLibros"])->name('APIgetUniqueLibros');
+Route::get('api/autores',[AutoresController::class,"APIgetAutores"])->name('apiAutoresall');
+Route::get('api/autores/{id}',[AutoresController::class,"APIgetUniqueAutores"])->name('APIgetUniqueAutores');
+Route::get('api/autores/libros/{id}',[AutoresController::class,"APIgetLibrosFromAutor"])->name('APIgetLibrosFromAutor');
+
 

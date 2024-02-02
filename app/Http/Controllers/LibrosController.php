@@ -13,7 +13,7 @@ class LibrosController extends Controller
     {
         $libros = Libro::paginate(10);
         $autores = Autor::get();
-        return view('Libros.Lista_Libros', compact('libros','autores'));
+        return view('Libros.Lista_Libros', compact('libros', 'autores'));
     }
 
     /**
@@ -54,7 +54,7 @@ class LibrosController extends Controller
     {
         $libro = Libro::find($id);
         $autores = Autor::get();
-        return view('Libros.edit',compact('libro','autores'));
+        return view('Libros.edit', compact('libro', 'autores'));
     }
 
     /**
@@ -79,4 +79,16 @@ class LibrosController extends Controller
         Libro::findOrFail($id)->delete();
         return redirect()->route('Libros.index');
     }
+
+    public function APIgetLibros(): bool|string
+    {
+        return Libro::all();
+    }
+
+    public function APIgetUniqueLibros($id): bool|string
+    {
+        return Libro::find($id);
+    }
+
+
 }

@@ -9,7 +9,8 @@ class Libro extends Model
 {
     protected $table = 'libros';
 
-    public function autor(){
+    public function autor(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Autor::class);
     }
 }

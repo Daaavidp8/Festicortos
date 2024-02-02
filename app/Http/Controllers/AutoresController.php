@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Autor;
+use App\Models\Libro;
+
 
 class AutoresController extends Controller
 {
@@ -75,4 +77,31 @@ class AutoresController extends Controller
         Autor::findOrFail($id)->delete();
         return redirect()->route('Autores.index');
     }
+
+    public function filtroBuscar(){
+        $autores = Autor::get();
+        return view('Autores.filtro',compact('autores'));
+    }
+
+    public function filtroMostrar(Request $request){
+        $autores = Autor::get();
+
+        $libros = Libro::where('id_Autor', '=', $request->get('autor'))->get();
+        $autorbuscado = Autor::find($request->get('autor'))['nombre'];
+        return view('Autores.filtro',compact('autores','libros','autorbuscado'));
+    }
+
+    public function APIgetAutores(): bool|string
+    {
+        return Autor::all();
+    }
+
+    public function APIgetUniqueAutores($id): bool|string
+    {
+        return Autor::find($id);
+    }
+    public function APIgetLibrosFromAutor($id){
+        return Libro::where('id_Autor','=',$id)->get();
+    }
+
 }
